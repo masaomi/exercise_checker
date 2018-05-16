@@ -12,12 +12,14 @@
   <tr>
     <td><%= @user.name %></td> 
     <% @problems.each do |problem| %>
-      <td align="center"> <%= "x" unless @user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+	<td align="center"> <%= @user.scores["ex_#{problem.id}"] unless @user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
     <% end %>
   </tr>
   <tr>
 </table>
 Submitted: <%= @submitted %> / <%= @problems.length %>
+<br />
+Total score: <%= @total_score %> / <%= 10*@problems.length %>
 <br />
 <h1>Exercises</h1>
 

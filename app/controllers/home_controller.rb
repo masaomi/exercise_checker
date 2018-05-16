@@ -61,6 +61,7 @@ class HomeController < ApplicationController
     @source = params[:source]
     @comment = params[:comment]
     @result = params[:result]
+    @score = params[:score]
     @pid = params[:format]
     @problem = Problem.find_by_id(@pid.to_i)
     @exid = "ex_#{@pid}"
@@ -73,9 +74,11 @@ class HomeController < ApplicationController
         user.sources = {} unless user.sources
         user.results = {} unless user.results
         user.comments = {} unless user.comments
+	user.scores = {} unless user.scores
         user.sources[@exid] = source unless source.to_s.empty?
         user.results[@exid] = @result[@exid] unless @result[@exid].to_s.empty?
         user.comments[@exid] = @comment[@exid] unless @comment[@exid].to_s.empty?
+        user.scores[@exid] = @score[@exid] unless @score[@exid].to_s.empty?
         unless source.to_s.empty?
           log = Log.new
           log.user = user.name
@@ -98,9 +101,11 @@ class HomeController < ApplicationController
         user.sources = {} unless user.sources
         user.results = {} unless user.results
         user.comments = {} unless user.comments
+	user.scores = {} unless user.scores
         user.sources[@exid] = source unless source.to_s.empty?
         user.results[@exid] = @result[@exid] unless @result[@exid].to_s.empty?
         user.comments[@exid] = @comment[@exid] unless @comment[@exid].to_s.empty?
+        user.scores[@exid] = @score[@exid] unless @score[@exid].to_s.empty?
         unless source.to_s.empty?
           log = Log.new
           log.user = user.name
@@ -121,6 +126,7 @@ class HomeController < ApplicationController
       @check = true 
       @problems = Problem.all
       @submitted = @user.sources.values.select{|s| !s.to_s.empty?}.length
+      @total_score = @user.scores.values.inject(0){|a,b| a.to_i + b.to_i}
     else
       @check = false
     end
