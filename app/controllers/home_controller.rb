@@ -127,7 +127,8 @@ class HomeController < ApplicationController
       @problems = Problem.all
       @submitted = @user.sources.values.select{|s| !s.to_s.empty?}.length
       @total_score = @user.scores.values.inject(0){|a,b| a.to_i + b.to_i}
-      @problems_length = PROBLEMS_LENGTH
+      #@problems_length = PROBLEMS_LENGTH
+      @problems_length = @problems.length
     else
       @check = false
     end
