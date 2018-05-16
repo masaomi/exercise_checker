@@ -11,7 +11,10 @@ Total submitting: <%= Log.select("id").count %> <br />
     </th>
   <% end %>
   <th>
-  User sum
+  Score
+  </th>
+  <th>
+  Submissions
   </th>
 
   <% @users.shuffle.each_with_index do |user, i| %>
@@ -29,11 +32,12 @@ Total submitting: <%= Log.select("id").count %> <br />
           <td align="center"></td>
         <% end %>
       <% end %>
+      <td align="center"> <%= @user_score[user] %> </td>
       <td align="center"> <%= @user_sum[user] %> </td>
     </tr>
   <% end %>
   <tr>
-    <td>How many?</td>
+    <td>Submissions</td>
     <% @problems.each do |problem| %>
       <td align="center"><%= @q_sum["ex_#{problem.id}"] %></td>
     <% end %>
