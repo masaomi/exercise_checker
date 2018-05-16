@@ -1,7 +1,8 @@
 
+<% if @check %>
 <br />
 <%= link_to "Back home", "/" %>
-<% if @check %>
+<br />
 <h1>Successfully submitted</h1>
 
 Name: <%= @user[:name] %>
@@ -34,7 +35,13 @@ Name: <%= @user[:name] %>
   <span style="color:red;font-size:large">The password is incorrect.</span>
 <% end %>
 <br />
+<%= form_tag({:controller => 'home',:action => 'edit_exercise', :format=>"#{@pid}"}) do %>
+  <%= hidden_field :source, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"] %>
+  <%= hidden_field :comment, :"ex_#{@pid}", :value=>@comment["ex_#{@pid}"] %>
+  <%= submit_tag 'Back' %>
+<% end %>
+
+<br />
 <br />
 <br />
 <% end %>
-<%= link_to "Check your name in the submit list", "/home" %>
