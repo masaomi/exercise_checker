@@ -1,4 +1,6 @@
-
+<br />
+<%= link_to "Back home", "/" %>
+<br />
 <% if @check %>
 <span style="color:gray;font-size:medium">Hi, there</span>
 <h1>Summary</h1>
@@ -17,9 +19,9 @@
   </tr>
   <tr>
 </table>
-Submitted: <%= @submitted %> / <%= @problems.length %>
+Submitted: <%= @submitted %> / <%= @problems_length %>
 <br />
-Total score: <%= @total_score %> / <%= 10*@problems.length %>
+Total score: <%= @total_score %> / <%= 10*@problems_length %>
 <br />
 <h1>Exercises</h1>
 
