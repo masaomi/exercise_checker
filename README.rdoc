@@ -1,0 +1,8 @@
+== Exercise checker
+
+This is a sort of code checker for a programming teaching.
+
+TODO
+* more description
+
+
