@@ -13,6 +13,12 @@ class HomeController < ApplicationController
               else
                 ""
               end
+    @comment = if comment_ = params[:comment]
+                comment_["ex_#{@pid}"].gsub(/\r/, '')
+              else
+                ""
+              end
+
   end
   def final_exercise 
     @st, @ed = params[:format].split("_")

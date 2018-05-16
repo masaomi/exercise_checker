@@ -3,6 +3,7 @@
 <h1>Confirmation</h1>
 <%= form_tag({:controller => 'home',:action => 'edit_exercise', :format=>"#{@pid}"}) do %>
   <%= hidden_field :source, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"] %>
+  <%= hidden_field :comment, :"ex_#{@pid}", :value=>@comment["ex_#{@pid}"] %>
   <%= submit_tag 'Back' %>
 <% end %>
 <%= form_tag({:controller => 'home',:action => 'register', :format=>"#{@pid}"}) do %>
