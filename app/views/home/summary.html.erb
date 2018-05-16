@@ -19,7 +19,13 @@ Total submitting: <%= Log.select("id").count %> <br />
       <!--      <td><%= user.name %></td> -->
       <td> somebody_<%= i+1 %> </td>
       <% @problems.each do |problem| %>
-        <td align="center"> <%= user.scores["ex_#{problem.id}"] unless user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+	      <% unless user.sources["ex_#{problem.id}"].to_s.empty? %>
+          <% if user.scores["ex_#{problem.id}"].to_i == 10 %> 
+            <td align="center" style="color:red"> <%= user.scores["ex_#{problem.id}"] %> </td>
+          <% else %>
+            <td align="center"> <%= user.scores["ex_#{problem.id}"] %> </td>
+          <% end %>
+        <% end %>
       <% end %>
       <td align="center"> <%= @user_sum[user] %> </td>
     </tr>
