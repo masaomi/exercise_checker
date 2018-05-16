@@ -1,0 +1,40 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Confirmation</h1>
+<%= form_tag({:controller => 'home',:action => 'edit_exercise', :format=>"#{@pid}"}) do %>
+  <%= hidden_field :source, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"] %>
+  <%= submit_tag 'Back' %>
+<% end %>
+<%= form_tag({:controller => 'home',:action => 'register', :format=>"#{@pid}"}) do %>
+<ul>
+    <li><span style="color:red;"><%= @problem.name %></span>
+    <%= @problem.question %> <br />
+    Source code<br />
+    <table border=1><tr><td>
+      <%= text_area :source_, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"], :size => "100x20", :disabled=>true %>
+    </td></tr></table>
+    Script check report<br />
+    <table border=1><tr><td>
+      <%= @result.values.join.to_s.gsub(/(\r\n|\r|\n)/, "<br />").html_safe %><br />
+    </td></tr></table>
+    Comments<br />
+    <table border=1><tr><td>
+      <%= @comment.values.join.to_s.gsub(/(\r\n|\r|\n)/, "<br />").html_safe %> <br />
+    </td></tr></table>
+    <%= hidden_field :source, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"] %>
+    <%= hidden_field :result, :"ex_#{@pid}", :value=>@result["ex_#{@pid}"] %>
+    <%= hidden_field :comment, :"ex_#{@pid}", :value=>@comment["ex_#{@pid}"] %>
+    </li>
+    <br />
+</ul>
+<% if @total_points.to_i >= 6 %>
+  <% if @user %>
+    Name: <%= text_field :user, :name, :value=>@user.name %> Password: <%= password_field :user, :password %>
+  <% else %>
+    Name: <%= text_field :user, :name %> Password: <%= password_field :user, :password %>
+  <% end %>
+  <%= submit_tag 'submit' %>
+<% else %>
+  <font color=red>You need to get 6 points at least to register.</font>
+<% end %>
+<% end %>

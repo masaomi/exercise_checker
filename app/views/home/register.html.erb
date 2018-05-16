@@ -1,0 +1,39 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<% if @check %>
+<h1>Successfully submitted</h1>
+
+Name: <%= @user[:name] %>
+<ul>
+  <li><span style="color:red;"><%= @problem.name %></span>
+  <%= @problem.question %> <br />
+  Source code<br />
+  <table border=1><tr><td>
+    <%= text_area :source_, :"ex_#{@pid}", :value=>@source["ex_#{@pid}"], :size => "100x20", :disabled=>true %>
+  </td></tr></table>
+  Script check report<br />
+  <table border=1><tr><td>
+    <%= @result[@exid].to_s.gsub(/(\r\n|\r|\n)/, "<br />").html_safe %><br />
+  </td></tr></table>
+  Comments<br />
+  <table border=1><tr><td>
+    <%= @comment[@exid].to_s.gsub(/(\r\n|\r|\n)/, "<br />").html_safe %> <br />
+  </td></tr></table>
+  </li>
+  <br />
+</ul>
+<% else %>
+Name: <%= @user[:name] %>
+<br />
+<br />
+<br />
+  <% if @input_password %>
+  <span style="color:red;font-size:large">Please input password.</span>
+  <% else %>
+  <span style="color:red;font-size:large">The password is incorrect.</span>
+<% end %>
+<br />
+<br />
+<br />
+<% end %>
+<%= link_to "Check your name in the submit list", "/home" %>

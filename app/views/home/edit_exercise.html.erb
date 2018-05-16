@@ -1,0 +1,29 @@
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Exercises</h1>
+
+<%= form_tag({:controller => 'home',:action => 'edit_exercise', :format=>"#{@pid}"}, :multipart => true) do %>
+  <%= file_field :file, :name, :class=>"" %>
+  <%= submit_tag 'load', :id=>"load" %>
+<% end %>
+
+<%= form_tag({:controller => 'home',:action => 'confirm', :format=>"#{@pid}"}) do %>
+<ul>
+    <li><span style="color:red;"><%= @problem.name %></span>
+    <%= @problem.question %><br />
+    Source code<br />
+    <%= text_area :source, "ex_#{@pid}", :size => "100x10", :value => @source %> <br />
+    <%= hidden_field :result, "ex_#{@pid}" %> <br />
+    Comments<br />
+    <%= text_area :comment, "ex_#{@pid}", :size => "100x10" %> <br />
+    </li>
+    <br />
+</ul>
+<%= submit_tag 'next' %>
+<% if @user %>
+  <%= hidden_field :user, :name, :value=>@user.name %>
+  <%= hidden_field :user, :password, :value=>@user.password %>
+<% end %>
+<% end %>
+<br />
+<br />
+<br />

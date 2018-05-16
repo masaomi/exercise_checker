@@ -1,0 +1,39 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Summary</h1>
+
+<table>
+  <tr>
+  <th>User</th>
+  <% @problems.each do |problem| %>
+    <th><span style="color:red;"><%= problem.name %></span>
+      <%= problem.question %><br />
+    </th>
+  <% end %>
+  <th>
+  User sum
+  </th>
+
+  <% @users.shuffle.each do |user| %>
+    <tr>
+      <!--      <td><%= user.name %></td> -->
+      <td> somebody </td>
+      <% @problems.each do |problem| %>
+        <td align="center"> <%= "x" unless user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+      <% end %>
+      <td align="center"> <%= @user_sum[user] %> </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Q sum</td>
+    <% @q_sum.each do |qsum| %>
+      <td align="center"><%= qsum %></td>
+    <% end %>
+  </tr>
+</table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

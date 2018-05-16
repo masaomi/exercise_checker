@@ -1,0 +1,27 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Exercises</h1>
+
+<%= form_tag({:controller => 'home',:action => 'final_confirm', :format=>"#{@st}_#{@ed}"}) do %>
+<ul>
+  <% @problems.each do |problem| %>
+    <li><span style="color:red;"><%= problem.name %></span>
+    <%= problem.question %><br />
+    <%= text_area :sources, "ex_#{problem.id}", :size => "20x10" %> <br />
+    Result<br />
+    <%= hidden_field :results, "ex_#{problem.id}", :size => "60x10" %> <br />
+    Comments<br />
+    <%= hidden_field :comments, "ex_#{problem.id}", :size => "60x10" %> <br />
+    </li>
+    <br />
+  <% end %>
+</ul>
+<%= submit_tag 'next' %>
+<% if @user %>
+  <%= hidden_field :user, :name, :value=>@user.name %>
+  <%= hidden_field :user, :password, :value=>@user.password %>
+<% end %>
+<% end %>
+<br />
+<br />
+<br />

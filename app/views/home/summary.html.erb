@@ -1,0 +1,67 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Summary</h1>
+Total submitting: <%= Log.select("id").count %> <br />
+<br />
+<table>
+  <tr>
+  <th>User</th>
+  <% @problems.each do |problem| %>
+    <th><span style="color:red;"><%= problem.name %></span><br />
+    </th>
+  <% end %>
+  <th>
+  User sum
+  </th>
+
+  <% @users.shuffle.each_with_index do |user, i| %>
+    <tr>
+      <!--      <td><%= user.name %></td> -->
+      <td> somebody_<%= i+1 %> </td>
+      <% @problems.each do |problem| %>
+        <td align="center"> <%= "x" unless user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+      <% end %>
+      <td align="center"> <%= @user_sum[user] %> </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Q sum</td>
+    <% @problems.each do |problem| %>
+      <td align="center"><%= @q_sum["ex_#{problem.id}"] %></td>
+    <% end %>
+  </tr>
+</table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<h3>Day1 submission</h3>
+<%= line_chart @logs1.map{|user, value|
+    {name: value[:name], data: value[:data]}
+}
+%>
+
+<h3>Day2 submission</h3>
+<%= line_chart @logs2.map{|user, value|
+    {name: value[:name], data: value[:data]}
+}
+%>
+
+<h3>Day3 submission</h3>
+<%= line_chart @logs3.map{|user, value|
+    {name: value[:name], data: value[:data]}
+}
+%>
+
+
+<%= column_chart @submissions,
+  :library => {
+  :hAxis => {:title => "Number of submitted exercises"},
+  :vAxis => {:title => "Number of students"}
+  }
+%>
+

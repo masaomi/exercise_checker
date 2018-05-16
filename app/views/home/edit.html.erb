@@ -1,0 +1,60 @@
+
+<% if @check %>
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Summary</h1>
+<table>
+  <tr>
+  <th>User</th>
+  <% @problems.each do |problem| %>
+    <th><span style="color:red;"><%= problem.name %></span><br />
+    </th>
+  <% end %>
+  <tr>
+    <td><%= @user.name %></td> 
+    <% @problems.each do |problem| %>
+      <td align="center"> <%= "x" unless @user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+    <% end %>
+  </tr>
+  <tr>
+</table>
+Submitted: <%= @submitted %> / <%= @problems.length %>
+<br />
+<h1>Exercises</h1>
+
+<%= form_tag({:controller => 'home',:action => 'confirm', :format=>"#{@st}_#{@ed}"}) do %>
+<ul>
+  <% @problems.each do |problem| %>
+    <% if @user and !@user.sources["ex_#{problem.id}"].to_s.empty? %>
+      <li><span style="color:red;"><%= problem.name %></span>
+      <%= problem.question %><br />
+      Source code<br />
+      <%= text_area :sources, "ex_#{problem.id}", :size => "100x10", :value => @user.sources["ex_#{problem.id}"], :disabled => true %> <br />
+      Script check report<br />
+      <%= text_area :results, "ex_#{problem.id}", :size => "100x10", :value => @user.results["ex_#{problem.id}"], :disabled => true %> <br />
+      Comments<br />
+      <%= text_area :comments, "ex_#{problem.id}", :size => "100x10", :value => @user.comments["ex_#{problem.id}"], :disabled => true %> <br />
+      </li>
+      <br />
+    <% end %>
+  <% end %>
+</ul>
+<% if @user %>
+  <%= hidden_field :user, :name, :value=>@user.name %>
+  <%= hidden_field :user, :password, :value=>@user.password %>
+<% end %>
+<% end %>
+<br />
+<br />
+<br />
+<% else %>
+<br />
+<br />
+<br />
+  <span style="color:red;font-size:large">The password is incorrect.</span>
+<% end %>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

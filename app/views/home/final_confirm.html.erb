@@ -1,0 +1,24 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Confirmation</h1>
+
+<%= form_tag({:controller => 'home',:action => 'register', :format=>"#{@st}_#{@ed}"}) do %>
+<ul>
+  <% @sources.each_with_index do |exid_source, i| %>
+    <li><span style="color:red;"><%= @problems[i].name %></span>
+    <%= @problems[i].question %> <br />
+    <table border=1><tr><td>
+      <%= exid_source.last.gsub(/(\r\n|\r|\n)/, "<br />").html_safe %> <br />
+    </td></tr></table>
+    <%= hidden_field :sources, :"#{exid_source.first}", :value=>@sources[exid_source.first].to_s %>
+    </li>
+    <br />
+  <% end %>
+</ul>
+<% if @user %>
+  Name: <%= text_field :user, :name, :value=>@user.name %> Password: <%= password_field :user, :password %>
+<% else %>
+  Name: <%= text_field :user, :name %> Password: <%= password_field :user, :password %>
+<% end %>
+<%= submit_tag 'submit' %>
+<% end %>

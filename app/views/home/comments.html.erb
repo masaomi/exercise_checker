@@ -1,0 +1,21 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Comments</h1>
+<br />
+<table>
+  <% @coms.each do |exid, com| %>
+    <tr>
+      <td> <%= @problems[exid.gsub(/ex_/, '').to_i-1].name %> </td>
+      <td> <%= com.html_safe %> </td>
+    </tr>
+  <% end %>
+</table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+
