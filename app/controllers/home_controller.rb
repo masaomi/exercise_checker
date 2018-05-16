@@ -129,6 +129,19 @@ class HomeController < ApplicationController
       @total_score = @user.scores.values.inject(0){|a,b| a.to_i + b.to_i}
       #@problems_length = PROBLEMS_LENGTH
       @problems_length = @problems.length
+
+      @users = User.all
+      @user_score = {}
+      @users.each do |user|
+        @user_score[user] = 0
+        @problems.each do |problem|
+          exid = "ex_#{problem.id}"
+          unless user.sources[exid].to_s.empty?
+            @user_score[user] += user.scores[exid].to_i
+          end
+        end
+      end
+      @rank = @users.sort_by{|user| @user_score[user]}.reverse.index(@user) + 1
     else
       @check = false
     end
@@ -136,16 +149,19 @@ class HomeController < ApplicationController
   def summary
     @users = User.all
     @user_sum = {}
+    @user_score = {}
     @q_sum = {}
     @problems = Problem.all
     @users.each do |user|
       @user_sum[user] = 0
+      @user_score[user] = 0
       @problems.each do |problem|
         exid = "ex_#{problem.id}"
         @q_sum[exid] ||= 0
         unless user.sources[exid].to_s.empty?
           @user_sum[user] += 1
           @q_sum[exid] += 1 
+          @user_score[user] += user.scores[exid].to_i
         end
       end
     end

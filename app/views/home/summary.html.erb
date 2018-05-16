@@ -1,5 +1,6 @@
-
-<span style="color:gray;font-size:medium">Hi, there</span>
+<br />
+<%= link_to "Back home", "/" %>
+<br />
 <h1>Summary</h1>
 Total submitting: <%= Log.select("id").count %> <br />
 <br />
@@ -17,7 +18,7 @@ Total submitting: <%= Log.select("id").count %> <br />
   Submissions
   </th>
 
-  <% @users.shuffle.each_with_index do |user, i| %>
+  <% @users.sort_by{|user| @user_score[user]}.reverse.each_with_index do |user, i| %>
     <tr>
       <!--      <td><%= user.name %></td> -->
       <td> somebody_<%= i+1 %> </td>

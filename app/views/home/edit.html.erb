@@ -2,7 +2,6 @@
 <%= link_to "Back home", "/" %>
 <br />
 <% if @check %>
-<span style="color:gray;font-size:medium">Hi, there</span>
 <h1>Summary</h1>
 <table>
   <tr>
@@ -14,14 +13,26 @@
   <tr>
     <td><%= @user.name %></td> 
     <% @problems.each do |problem| %>
-	<td align="center"> <%= @user.scores["ex_#{problem.id}"] unless @user.sources["ex_#{problem.id}"].to_s.empty? %> </td>
+      <% unless @user.sources["ex_#{problem.id}"].to_s.empty? %>
+        <% if @user.scores["ex_#{problem.id}"].to_i == 10 %>
+	<td align="center" style="color:red"> <%= @user.scores["ex_#{problem.id}"] %> </td>
+        <% else %>
+	<td align="center"> <%= @user.scores["ex_#{problem.id}"] %> </td>
+        <% end %>
+      <% else %>
+	<td align="center"> </td>
+      <% end %>
     <% end %>
   </tr>
   <tr>
 </table>
+<br />
+<br />
 Submitted: <%= @submitted %> / <%= @problems_length %>
 <br />
 Total score: <%= @total_score %> / <%= 10*@problems_length %>
+<br />
+Ranking: <%= @rank %> / <%= @users.length %>
 <br />
 <h1>Exercises</h1>
 
