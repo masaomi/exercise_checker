@@ -17,6 +17,9 @@ Total submisions: <%= Log.select("id").count %> <br />
   <th>
   Submissions
   </th>
+  <th>
+  Rank
+  </th>
 
   <% @users.sort_by{|user| @user_score[user]}.reverse.each_with_index do |user, i| %>
     <tr>
@@ -35,6 +38,7 @@ Total submisions: <%= Log.select("id").count %> <br />
       <% end %>
       <td align="center"> <%= @user_score[user] %> </td>
       <td align="center"> <%= @user_sum[user] %> </td>
+      <td align="center"> <%= i+1 %> </td>
     </tr>
   <% end %>
   <tr>
