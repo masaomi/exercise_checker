@@ -25,6 +25,8 @@ Total submitting: <%= Log.select("id").count %> <br />
           <% else %>
             <td align="center"> <%= user.scores["ex_#{problem.id}"] %> </td>
           <% end %>
+        <% else %>
+          <td align="center"></td>
         <% end %>
       <% end %>
       <td align="center"> <%= @user_sum[user] %> </td>
