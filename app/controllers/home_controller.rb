@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   def index
     @users = User.all
   end
+  def cheat
+    @users = User.all
+  end
   def edit_exercise 
     @pid = params[:format]
     @problem = Problem.find_by_id(@pid.to_i)
@@ -174,7 +177,7 @@ class HomeController < ApplicationController
     @logs1 = {}
     user_count = 0
     Log.all.each do |log|
-      if Time.new(2018,05,18,12) < log.updated_at and log.updated_at < Time.new(2018,05,18,20)
+      if Time.new(2018,05,17,13) < log.updated_at and log.updated_at < Time.new(2018,05,17,24)
         unless @logs1[log.user]
           user_count += 1
         end
@@ -187,7 +190,7 @@ class HomeController < ApplicationController
     @logs2 = {}
     user_count = 0
     Log.all.each do |log|
-      if Time.new(2018,05,19,8) < log.updated_at and log.updated_at < Time.new(2018,05,19,20)
+      if Time.new(2018,05,18,6) < log.updated_at and log.updated_at < Time.new(2018,05,18,24)
         unless @logs2[log.user]
           user_count += 1
         end
@@ -200,7 +203,7 @@ class HomeController < ApplicationController
     @logs3 = {}
     user_count = 0
     Log.all.each do |log|
-      if Time.new(2018,05,22,12) < log.updated_at and log.updated_at < Time.new(2018,05,22,20)
+      if Time.new(2018,05,22,6) < log.updated_at and log.updated_at < Time.new(2018,05,22,20)
         unless @logs3[log.user]
           user_count += 1
         end

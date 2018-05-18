@@ -30,6 +30,7 @@ Rails.application.routes.draw do
          get 'test'
          get 'final_exercise'
          post 'final_confirm'
+         get 'cheat'
        end
      end
 
