@@ -1,0 +1,98 @@
+
+<span style="color:gray;font-size:medium">Hi, there</span>
+<h1>Exercises</h1>
+
+<ul>
+  <li>Day1 Part1: Understand how to calculate the sum of a list through reviewing Python grammar
+  <ul>
+    <li><a href="/day1_part1.pdf">day1_part1.pdf</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day1 Part2: Understand String object and you can compare two nucleotide sequences
+  <ul>
+    <li><a href="/day1_part2.pdf">day1_part2.pdf</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day1 Part3: Understand the meaning of nested loop structure and you can compare more than 2 sequences
+  <ul>
+    <li><a href="/day1_part3.pdf">day1_part3.pdf</a></li>
+  </ul>
+  </li>
+  </ul>
+  <br>
+  <ul>
+  <li>Day2 Part1: Understand command line argument and file input process
+  <ul>
+    <li><a href="/day2_part1.pdf">day2_part1.pdf</a></li>
+    <li><a href="/athal_genome.fa.gz">athal_genome.fa.gz</a></li>
+    <li><a href="/input.fa">input.fa</a></li>
+    <li><a href="/sample.fq">sample.fq</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day2 Part2: Understand the formula of nucleotide diversity and implement/calculate it as a function in Python
+  <ul>
+    <li><a href="/day2_part2.pdf">day2_part2.pdf</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day2 Part3: Understand Tajima's D formula and calculate the number of segregating sites from an aligned fasta file in Python
+  <ul>
+    <li><a href="/day2_part3.pdf">day2_part3.pdf</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day2 Part4: Understand Tajima's D formula and calculate d, the difference between nucleotide diversity and the estemated pi from the number of segregating sites, and calculate Tajima's D in Python
+  <ul>
+    <li><a href="/day2_part4.pdf">day2_part4.pdf</a></li>
+    <li><a href="/wright_fisher.py">wright_fisher.py</a></li>
+    <li><a href="/exercise_module.py">exercise_module.py</a></li>
+  </ul>
+  </li>
+  <br>
+  <li>Day2 Part5: Understand batch process (batch shell script), and you can reuse a script
+  <ul>
+    <li><a href="/day2_part5.pdf">day2_part5.pdf</a></li>
+    <li><a href="/athal_chr1.fa.gz">athal_chr1.fa.gz</a></li>
+    <li><a href="/athal_chr2.fa.gz">athal_chr2.fa.gz</a></li>
+    <li><a href="/athal_chr3.fa.gz">athal_chr3.fa.gz</a></li>
+    <li><a href="/HMA4_aligned_fasta_Ahal_origin.tgz">HMA4_aligned_fasta_Ahal_origin.tgz</a></li>
+    <li><a href="/HMA4_aligned_fasta_Alyr_origin.tgz">HMA4_aligned_fasta_Alyr_origin.tgz</a></li>
+    <li><a href="/Athaliana_SNPs.tgz">Athaliana_SNPs.tgz</a></li>
+  </ul>
+</ul>
+
+<br />
+<br />
+<h2>Who submitted?</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Created/Updated</th>
+    <th>Edit/Confirmation</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+    <%= form_tag({:controller => 'home', :action => "edit"}) do %>
+      <input id="user_name" name="user[name]" type="hidden" value=<%= user.name %> />
+      <input id="user_id" name="user[id]" type="hidden" value=<%= user.id %> />
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td>
+        <%= submit_tag "confirm" %> 
+        <%= password_field :user, :password, :placeholder=>"input password", :value=>"" %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+<br />
+<%= link_to "Summary table", "/home/summary" %><br />
+<%= link_to "Comments", "/home/comments" %>
+<br />
+<br />
+<br />
